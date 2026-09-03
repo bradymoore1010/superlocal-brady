@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security report
+    url: https://github.com/bradymoore1010/mail/security/advisories/new
+    about: Report vulnerabilities privately instead of opening a public issue.
+  - name: Setup and product discussion
+    url: https://github.com/bradymoore1010/mail/discussions
+    about: Ask a sanitized setup question or discuss a broader product idea.

@@ -1,0 +1,34 @@
+.DS_Store
+.build/
+Mail.app/
+performance-results/
+performance-results.noindex/
+*.trace
+*.log
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+.env
+.env.*
+!.env.example
+
+# Local Gmail credentials and account state
+client_secret_*.json
+credentials.json
+google-oauth*.json
+
+# Private QA and working design captures
+qa/
+OpenDesign/
+design-qa.md
+v.2/qa/
+v.2/design-qa.md
+v.2/qa-comparison.html
+
+# Remotion dependencies and generated renders
+launch-video/node_modules/
+launch-video/out/
+
+# Local release bundles
+release/
+*.zip
