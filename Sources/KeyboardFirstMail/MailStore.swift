@@ -1,7 +1,7 @@
 import AppKit
 import Foundation
 import Observation
-import UserNotifications
+@preconcurrency import UserNotifications
 
 private enum UndoableMailAction {
     case archive(previousThread: MailThread)
