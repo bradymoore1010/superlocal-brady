@@ -421,6 +421,10 @@ enum PerformanceProbe {
         let sortedMainRunLoopWallWork = mainRunLoopWallWork.sorted()
         let sortedMainRunLoopCPUWork = mainRunLoopCPUWork.sorted()
         let sortedActions = actionDurations.sorted()
+        let actionMaximumMilliseconds: Double = sortedActions.last ?? 0
+        let mainQueueDelayMaximumMilliseconds: Double = sortedMainQueueDelays.last ?? 0
+        let mainRunLoopWorkMaximumMilliseconds: Double = sortedMainRunLoopCPUWork.last ?? 0
+        let mainRunLoopWallWorkMaximumMilliseconds: Double = sortedMainRunLoopWallWork.last ?? 0
         let delayedMainQueueSamples = mainQueueDelays.filter { $0 > 50 }.count
         let longMainThreadTasks = mainRunLoopCPUWork.filter { $0 > 50 }.count
         let missedFrameBudgets = mainQueueDelays.filter { $0 > (1_000.0 / 60.0) }.count
@@ -467,20 +471,20 @@ enum PerformanceProbe {
             "actionCount": actionCount,
             "actionP75Milliseconds": percentile(0.75, sortedActions),
             "actionP95Milliseconds": percentile(0.95, sortedActions),
-            "actionMaximumMilliseconds": (sortedActions.last ?? 0),
+            "actionMaximumMilliseconds": actionMaximumMilliseconds,
             "mainQueueSampleCount": mainQueueDelays.count,
             "mainQueueDelayP75Milliseconds": percentile(0.75, sortedMainQueueDelays),
             "mainQueueDelayP95Milliseconds": percentile(0.95, sortedMainQueueDelays),
-            "mainQueueDelayMaximumMilliseconds": (sortedMainQueueDelays.last ?? 0),
+            "mainQueueDelayMaximumMilliseconds": mainQueueDelayMaximumMilliseconds,
             "mainQueueDelaysOver50Milliseconds": delayedMainQueueSamples,
             "mainQueueDelaysOverFrameBudget": missedFrameBudgets,
             "mainRunLoopWorkSampleCount": mainRunLoopWork.count,
             "mainRunLoopWorkP75Milliseconds": percentile(0.75, sortedMainRunLoopCPUWork),
             "mainRunLoopWorkP95Milliseconds": percentile(0.95, sortedMainRunLoopCPUWork),
-            "mainRunLoopWorkMaximumMilliseconds": (sortedMainRunLoopCPUWork.last ?? 0),
+            "mainRunLoopWorkMaximumMilliseconds": mainRunLoopWorkMaximumMilliseconds,
             "mainRunLoopWallWorkP75Milliseconds": percentile(0.75, sortedMainRunLoopWallWork),
             "mainRunLoopWallWorkP95Milliseconds": percentile(0.95, sortedMainRunLoopWallWork),
-            "mainRunLoopWallWorkMaximumMilliseconds": (sortedMainRunLoopWallWork.last ?? 0),
+            "mainRunLoopWallWorkMaximumMilliseconds": mainRunLoopWallWorkMaximumMilliseconds,
             "mainThreadTasksOver50Milliseconds": longMainThreadTasks,
             "slowMainQueueSamples": slowMainQueueSamples,
             "slowMainRunLoopSamples": slowMainRunLoopSamples,
