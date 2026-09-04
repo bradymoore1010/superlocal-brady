@@ -1414,7 +1414,10 @@ final class MailStore {
             toast("The unsubscribe email address could not be opened")
             return
         }
-        let recipient = url.path.removingPercentEncoding?
+        let recipientSource = url.absoluteString
+            .dropFirst("mailto:".count)
+            .prefix { $0 != "?" && $0 != "#" }
+        let recipient = String(recipientSource).removingPercentEncoding?
             .trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
         guard !recipient.isEmpty else {
             toast("The unsubscribe email address is missing")
