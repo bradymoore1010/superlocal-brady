@@ -24,7 +24,7 @@ Mail requires macOS 14 or later.
 
 ### Download
 
-Download `Mail-macOS-v1.0.0.zip` from the [latest GitHub release](https://github.com/bradymoore1010/mail/releases/latest), unzip it, and move `Mail.app` to Applications.
+Download the `Mail-macOS-vX.Y.Z.zip` build from the [latest GitHub release](https://github.com/bradymoore1010/mail/releases/latest), unzip it, and move `Mail.app` to Applications.
 
 The public build is ad-hoc signed because this personal project does not currently use an Apple Developer ID or notarization. If macOS blocks that download, build from source below. The source build is the cleanest installation path until notarized releases are available.
 
