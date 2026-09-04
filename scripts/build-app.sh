@@ -92,7 +92,27 @@ env \
         --config-path "${cache_root}/swiftpm/config" \
         --security-path "${cache_root}/swiftpm/security"
 
-cp "${project_dir}/.build/out/Products/Release/KeyboardFirstMail" "${app_dir}/Contents/MacOS/KeyboardFirstMail"
+binary_dir="$(
+    env \
+        SDKROOT="${sdk_path}" \
+        CLANG_MODULE_CACHE_PATH="${cache_root}/clang" \
+        SWIFT_MODULE_CACHE_PATH="${cache_root}/swift" \
+        swift build \
+            --show-bin-path \
+            --configuration release \
+            --sdk "${sdk_path}" \
+            --cache-path "${cache_root}/swiftpm/cache" \
+            --config-path "${cache_root}/swiftpm/config" \
+            --security-path "${cache_root}/swiftpm/security"
+)"
+binary_path="${binary_dir}/KeyboardFirstMail"
+
+if [[ ! -x "${binary_path}" ]]; then
+    echo "Built executable not found at ${binary_path}." >&2
+    exit 1
+fi
+
+cp "${binary_path}" "${app_dir}/Contents/MacOS/KeyboardFirstMail"
 cp "${project_dir}/AppResources/Info.plist" "${app_dir}/Contents/Info.plist"
 cp "${icon_output}" "${app_dir}/Contents/Resources/KeyboardMailIcon.icns"
 cp "${titlebar_output}" "${app_dir}/Contents/Resources/KeyboardMailTitlebar.png"
