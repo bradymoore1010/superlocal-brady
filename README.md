@@ -3,13 +3,13 @@
 [![macOS CI](https://github.com/bradymoore1010/swaggerhuman/actions/workflows/ci.yml/badge.svg)](https://github.com/bradymoore1010/swaggerhuman/actions/workflows/ci.yml)
 [![MIT license](https://img.shields.io/badge/license-MIT-17352e.svg)](LICENSE)
 
-[![swaggerhuman's inbox with fictional messages](docs/assets/swaggerhuman-hero.png)](docs/assets/swaggerhuman-demo.mp4)
+[![swaggerhuman's inbox with fictional messages](docs/assets/swaggerhuman-hero.png)](https://github.com/bradymoore1010/swaggerhuman/raw/refs/heads/main/docs/assets/swaggerhuman-demo.mp4)
 
 swaggerhuman is a mail app for macOS. Fast inbox, keyboard controls, and a little frosted glass. Open it, handle your email, get back to what you were doing.
 
-[Watch the 50-second demo](docs/assets/swaggerhuman-demo.mp4) · [Download the original Swift release](https://github.com/bradymoore1010/swaggerhuman/releases/latest) · [Connect Gmail](GMAIL_SETUP.md)
+[Download the 50-second demo](https://github.com/bradymoore1010/swaggerhuman/raw/refs/heads/main/docs/assets/swaggerhuman-demo.mp4) · [Download the original Swift release](https://github.com/bradymoore1010/swaggerhuman/releases/latest) · [Connect Gmail](GMAIL_SETUP.md)
 
-The demo shows the current swaggerhuman build. The source and downloads here are the original Swift Mail release.
+The demo shows the current swaggerhuman build. The app source and release download here are the original Swift Mail build.
 
 ## What it does
 
