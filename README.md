@@ -5,32 +5,31 @@
 
 ![Mail's frosted-glass inbox with fictional messages](docs/assets/mail-hero.png)
 
-A native, minimalist Gmail client for macOS. Mail keeps the inbox fast, the interface quiet, and the full workflow within reach of the keyboard.
+Mail is a native Gmail app for macOS. Fast inbox, keyboard controls, and a little frosted glass. Open it, handle your email, get back to what you were doing.
 
 [Download the latest release](https://github.com/bradymoore1010/mail/releases/latest) · [Watch the 19-second launch film](docs/assets/mail-launch.mp4) · [Connect Gmail](GMAIL_SETUP.md)
 
-## What makes Mail different
+## What it does
 
-- **Native from the window down.** SwiftUI, AppKit editing, WebKit message rendering, Keychain credentials, and a local SQLite/FTS5 cache. No Electron shell and no hosted backend.
-- **Keyboard-first by default.** Navigate, search, archive, star, compose, reply, format, attach, and send without reaching for the mouse.
-- **Correspondence-aware threads.** A first-contact message opens as a reader and waits for `R` or the Reply button. A conversation you have already joined opens on the latest incoming message with the reply composer ready.
-- **Your whole Gmail address book.** Recipient autocomplete is built in the background from addresses across Sent mail, including From, To, Cc, Bcc, and Reply-To headers.
-- **Local-first speed.** The cached inbox renders before OAuth refresh or network work. Gmail synchronization, MIME parsing, indexing, and attachment work stay off the main actor.
-- **A restrained frosted-glass interface.** One compact sidebar, one focused inbox, and one conversation surface rather than a dashboard of secondary tools.
+- **The whole email workflow from the keyboard.** Navigate, search, archive, star, write, reply, format, attach, and send.
+- **Replies are ready when they should be.** A first-contact email opens for reading. Hit `R` when you want to reply. If you've already joined the conversation, it opens on the latest incoming message with the reply box ready.
+- **Autocomplete from your Gmail history.** Mail builds a recipient directory in the background from From, To, Cc, Bcc, and Reply-To addresses across Sent mail.
+- **Your inbox opens from the local cache.** It doesn't wait for OAuth or the network. Gmail sync, MIME parsing, indexing, and attachment work run off the main actor.
+- **A small native app.** SwiftUI, AppKit editing, WebKit email rendering, Keychain credentials, and SQLite/FTS5 storage. One compact sidebar, one inbox, one conversation. No Electron or hosted backend.
 
 ## Install
 
-Mail requires macOS 14 or later.
+You'll need macOS 14 or later.
 
 ### Download
 
-Download the `Mail-macOS-vX.Y.Z.zip` build from the [latest GitHub release](https://github.com/bradymoore1010/mail/releases/latest), unzip it, and move `Mail.app` to Applications.
+Grab `Mail-macOS-vX.Y.Z.zip` from the [latest release](https://github.com/bradymoore1010/mail/releases/latest), unzip it, and move `Mail.app` to Applications.
 
-The public build is ad-hoc signed because this personal project does not currently use an Apple Developer ID or notarization. If macOS blocks that download, build from source below. The source build is the cleanest installation path until notarized releases are available.
+The download is ad-hoc signed. This is a personal project, and I haven't added Apple Developer ID signing or notarization yet. If macOS blocks it, build from source below. That's the cleanest install for now.
 
 ### Build from source
 
-Install Apple's command-line developer tools, then run:
+Install Apple's command-line developer tools, then:
 
 ```bash
 git clone https://github.com/bradymoore1010/mail.git
@@ -39,7 +38,7 @@ cd mail
 open "Mail.app"
 ```
 
-Mail opens with a fictional sample inbox. Follow [GMAIL_SETUP.md](GMAIL_SETUP.md) when you are ready to connect your own Gmail account.
+It opens with a fictional inbox so you can try it first. Follow [the Gmail setup guide](GMAIL_SETUP.md) to connect your account.
 
 ## Keyboard controls
 
@@ -59,11 +58,11 @@ Mail opens with a fictional sample inbox. Follow [GMAIL_SETUP.md](GMAIL_SETUP.md
 | `⌘Z` or `Ctrl-Z` | Undo the latest archive or send within five seconds |
 | `Esc` | Close the current layer |
 
-Formatting, list, indentation, and attachment shortcuts are documented in [docs/KEYBOARD_SHORTCUTS.md](docs/KEYBOARD_SHORTCUTS.md).
+The [full shortcut list](docs/KEYBOARD_SHORTCUTS.md) covers formatting, lists, indentation, and attachments too.
 
 ## Search
 
-Search is case-, width-, and diacritic-insensitive. Every free-text term must match, and sender or subject hits rank above preview and body hits.
+Search ignores differences in case, character width, and accents. Every free-text term has to match. Sender and subject matches come before matches in the preview or body.
 
 ```text
 from:ava
@@ -74,35 +73,35 @@ is:starred
 has:attachment
 ```
 
-Command-K uses the same engine across every mailbox and mixes matching actions with mail results. Local FTS results appear while typing; Gmail search is a fallback for older messages outside the recent cache.
+`⌘K` searches every mailbox and shows matching commands alongside mail. Local FTS results appear as you type. For older messages outside the recent cache, it falls back to Gmail search.
 
 ## Gmail and privacy
 
-Mail talks directly to Google's Gmail API. OAuth uses Authorization Code with PKCE and a temporary loopback callback. Refresh tokens stay in macOS Keychain; normalized mail and search data stay in a local SQLite database.
+Mail talks directly to Google's Gmail API. Refresh tokens live in macOS Keychain. Mail and search data live in a local SQLite database. OAuth uses Authorization Code with PKCE and a temporary loopback callback.
 
-Each user supplies a Google Desktop OAuth client JSON. Credentials, tokens, databases, real mail, and private QA captures are explicitly excluded from this repository. See [GMAIL_SETUP.md](GMAIL_SETUP.md), [docs/PRIVACY.md](docs/PRIVACY.md), and [SECURITY.md](SECURITY.md).
+You'll need your own Google Desktop OAuth client JSON. Credentials, tokens, databases, real email, and private QA captures stay out of this repo. The details are in [Gmail setup](GMAIL_SETUP.md), [privacy](docs/PRIVACY.md), and [security](SECURITY.md).
 
 ## Performance
 
-The release harness exercises 10,000 threads and 29,352 messages, including long conversations, HTML, inline images, attachments, labels, and mixed read states.
+The release checks use 10,000 threads and 29,352 messages, with long conversations, HTML, inline images, attachments, labels, and a mix of read and unread mail. The recorded results:
 
-- All 19 established interaction metrics stayed within the strict `+5%` regression gate after Gmail directory and correspondence-aware thread behavior were added.
-- The frosted-glass production comparison measured a `422.672 ms` p95 warm first useful frame.
-- Accepted sustained-use runs recorded `9.94 ms` worst action-latency p95, zero main-thread tasks over 50 ms, and no resident-memory growth.
-- The deterministic behavior suite contains 57 passing tests.
+- All 19 interaction metrics stayed within the `+5%` regression limit after adding the Gmail directory and conversation-aware reply behavior.
+- The frosted-glass production comparison reached its first useful frame in `422.672 ms` at p95 on a warm launch.
+- Accepted sustained-use runs had a worst action-latency p95 of `9.94 ms`, zero main-thread tasks over 50 ms, and no resident-memory growth.
+- The deterministic behavior suite passed all 57 tests.
 
-The methodology, raw metric definitions, rejected-run policy, and limitations are in [docs/PERFORMANCE_REPORT.md](docs/PERFORMANCE_REPORT.md). The performance contract is in [PERFORMANCE.md](PERFORMANCE.md).
+The [performance report](docs/PERFORMANCE_REPORT.md) explains how these were measured, what the metrics mean, which runs were rejected, and where the results have limits. [PERFORMANCE.md](PERFORMANCE.md) has the performance contract.
 
 ## Development
 
-Run the deterministic test suite and build the release app:
+Run the tests and build the app:
 
 ```bash
 ./scripts/test.sh
 ./scripts/build-app.sh
 ```
 
-Run focused performance checks:
+For performance checks:
 
 ```bash
 ./scripts/benchmark.sh release-check 3
@@ -110,7 +109,7 @@ Run focused performance checks:
 ./scripts/soak-test.sh 900 release-soak-check
 ```
 
-The launch film and repository artwork are reproducible Remotion compositions:
+The launch film and repo artwork are built with Remotion. You can render them yourself:
 
 ```bash
 cd launch-video
@@ -119,7 +118,7 @@ npm run lint
 npm run render
 ```
 
-Generated mail fixtures, app bundles, test data, performance results, and video renders are ignored. Only the reviewed public assets under `docs/assets/` are committed.
+Generated mail fixtures, app bundles, test data, performance results, and video renders are gitignored. Only reviewed public assets in `docs/assets/` are committed.
 
 ## Architecture
 
@@ -133,20 +132,20 @@ SQLite/FTS5   GmailIntegration
                Gmail API
 ```
 
-`MailStore` owns user-visible state on the main actor. Actor-isolated Gmail and SQLite components perform network and persistence work. Cached summaries render first, full conversations hydrate on demand, and optimistic actions reconcile with Gmail in the background. See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for the full map.
+`MailStore` owns what you see on the main actor. The Gmail and SQLite components handle network and storage work in their own actors. Cached summaries show up first, full conversations load when you open them, and actions update the UI immediately while Gmail catches up in the background. The [architecture doc](docs/ARCHITECTURE.md) has the full map.
 
 ## Project status
 
-Version 1.0 is a production-ready personal release for macOS with Gmail as its only live provider. It is intentionally narrow: no calendar, tasks, hosted service, multi-provider abstraction, or mobile client. Google OAuth setup is still user-owned, and the downloadable app is not yet notarized.
+Version 1.0 is a personal release for macOS. Gmail is the only live provider. The scope is small: no calendar, tasks, hosted service, multi-provider layer, or mobile app. You'll still need to set up Google OAuth yourself, and the download isn't notarized yet.
 
-## About the maker
+## Who built it
 
-Mail is designed and built by [Brady Moore](https://github.com/bradymoore1010) as an opinionated daily-use experiment in native, keyboard-first software. The source, performance harness, interactive prototype, launch-film project, and public design assets are all included here.
+I'm [Brady Moore](https://github.com/bradymoore1010). I designed and built Mail as an opinionated daily-use experiment in native software you can run from the keyboard. The source, performance checks, interactive prototype, launch film project, and public design assets are all here.
 
 ## Contributing
 
-Issues and focused pull requests are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md) before changing behavior, and never include credentials, real mail, local databases, or private screenshots in an issue or commit.
+Found a bug or have a focused change in mind? Open an issue or PR. Read [CONTRIBUTING.md](CONTRIBUTING.md) before changing behavior. Keep credentials, real email, local databases, and private screenshots out of issues and commits.
 
 ## License
 
-Mail is available under the [MIT License](LICENSE). It is an independent personal project and is not affiliated with, endorsed by, or sponsored by Google or Apple. Gmail is a trademark of Google LLC; macOS is a trademark of Apple Inc.
+Mail uses the [MIT License](LICENSE). It's an independent personal project, with no affiliation, endorsement, or sponsorship from Google or Apple. Gmail is a trademark of Google LLC; macOS is a trademark of Apple Inc.
