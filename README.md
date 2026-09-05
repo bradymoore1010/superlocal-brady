@@ -1,13 +1,15 @@
-# Mail
+# swaggerhuman
 
-[![macOS CI](https://github.com/bradymoore1010/mail/actions/workflows/ci.yml/badge.svg)](https://github.com/bradymoore1010/mail/actions/workflows/ci.yml)
+[![macOS CI](https://github.com/bradymoore1010/swaggerhuman/actions/workflows/ci.yml/badge.svg)](https://github.com/bradymoore1010/swaggerhuman/actions/workflows/ci.yml)
 [![MIT license](https://img.shields.io/badge/license-MIT-17352e.svg)](LICENSE)
 
-![Mail's frosted-glass inbox with fictional messages](docs/assets/mail-hero.png)
+[![swaggerhuman's inbox with fictional messages](docs/assets/swaggerhuman-hero.png)](docs/assets/swaggerhuman-demo.mp4)
 
-Mail is a native Gmail app for macOS. Fast inbox, keyboard controls, and a little frosted glass. Open it, handle your email, get back to what you were doing.
+swaggerhuman is a mail app for macOS. Fast inbox, keyboard controls, and a little frosted glass. Open it, handle your email, get back to what you were doing.
 
-[Download the latest release](https://github.com/bradymoore1010/mail/releases/latest) · [Watch the 19-second launch film](docs/assets/mail-launch.mp4) · [Connect Gmail](GMAIL_SETUP.md)
+[Watch the 50-second demo](docs/assets/swaggerhuman-demo.mp4) · [Download the original Swift release](https://github.com/bradymoore1010/swaggerhuman/releases/latest) · [Connect Gmail](GMAIL_SETUP.md)
+
+The demo shows the current swaggerhuman build. The source and downloads here are the original Swift Mail release.
 
 ## What it does
 
@@ -23,7 +25,7 @@ You'll need macOS 14 or later.
 
 ### Download
 
-Grab `Mail-macOS-vX.Y.Z.zip` from the [latest release](https://github.com/bradymoore1010/mail/releases/latest), unzip it, and move `Mail.app` to Applications.
+Grab `Mail-macOS-vX.Y.Z.zip` from the [latest release](https://github.com/bradymoore1010/swaggerhuman/releases/latest), unzip it, and move `Mail.app` to Applications.
 
 The download is ad-hoc signed. This is a personal project, and I haven't added Apple Developer ID signing or notarization yet. If macOS blocks it, build from source below. That's the cleanest install for now.
 
@@ -32,8 +34,8 @@ The download is ad-hoc signed. This is a personal project, and I haven't added A
 Install Apple's command-line developer tools, then:
 
 ```bash
-git clone https://github.com/bradymoore1010/mail.git
-cd mail
+git clone https://github.com/bradymoore1010/swaggerhuman.git
+cd swaggerhuman
 ./scripts/build-app.sh
 open "Mail.app"
 ```

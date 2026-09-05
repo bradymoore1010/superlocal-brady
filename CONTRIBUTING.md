@@ -14,8 +14,8 @@ Focused bug fixes, performance improvements, accessibility work, and changes tha
 Mail requires macOS 14 or later and Apple's command-line developer tools.
 
 ```bash
-git clone https://github.com/bradymoore1010/mail.git
-cd mail
+git clone https://github.com/bradymoore1010/swaggerhuman.git
+cd swaggerhuman
 ./scripts/test.sh
 ./scripts/build-app.sh
 open "Mail.app"

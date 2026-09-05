@@ -23,5 +23,5 @@ All notable changes to Mail are documented here. The format follows [Keep a Chan
 - Frosted-glass warm launch measured `422.672 ms` at p95 in the matched production comparison.
 - Accepted sustained-use runs recorded zero main-thread tasks above 50 ms and no resident-memory growth.
 
-[Unreleased]: https://github.com/bradymoore1010/mail/compare/v1.0.0...HEAD
-[1.0.0]: https://github.com/bradymoore1010/mail/releases/tag/v1.0.0
+[Unreleased]: https://github.com/bradymoore1010/swaggerhuman/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/bradymoore1010/swaggerhuman/releases/tag/v1.0.0
