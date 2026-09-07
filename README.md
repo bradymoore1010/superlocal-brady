@@ -4,6 +4,8 @@ Using superlocal (Superhuman open source cloan) and customizing it around how I 
 
 Less stuff in the sidebar. Easier to read replies. One inbox with hot keys.
 
+![Superlocal inbox on a shaded Desert Mountain background](assets/superlocal-screenshot.png)
+
 ### What I changed
 
 - Simplified the sidebar to Inbox, Starred, and Calendar, with Settings at the bottom and the other folders in a drawer.
