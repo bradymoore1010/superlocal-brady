@@ -4,7 +4,7 @@ Using superlocal (Superhuman open source cloan) and customizing it around how I 
 
 Less stuff in the sidebar. Easier to read replies. One inbox with hot keys.
 
-![Superlocal: quick replies, archiving, stars, reminders, and Inbox Zero](assets/superlocal-features.gif?v=fd9d4df)
+![Superlocal: quick replies, archiving, stars, reminders, and Inbox Zero](https://raw.githubusercontent.com/bradymoore1010/superlocal-brady/fd9d4df7cbb8a4cc3ecc57bf8988293b877ece94/assets/superlocal-features.gif)
 
 ### What I changed
 
