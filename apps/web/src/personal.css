@@ -1,0 +1,84 @@
+/* Small presentation layer over Superlocal; no changes to sync, caches or routing. */
+:root[data-theme="light"] {
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+  --bg: #f3f4f5;
+  --sidebar: rgba(255,255,255,.64);
+  --panel: rgba(255,255,255,.82);
+  --hover: rgba(214,216,219,.5);
+  --border: rgba(41,41,41,.11);
+  --text: #292929;
+  --muted: #5d5d5d;
+  --subtle: #777;
+  --icon: #777;
+  --accent: #292929;
+  --unread: #292929;
+  --selection-accent: rgba(41,41,41,.42);
+  --ui-nav: 14px;
+  --ui-medium: 13px;
+  --ui-subject: 24px;
+  --ui-tracking: -.15px;
+  font-family: var(--font);
+  letter-spacing: -.15px;
+}
+.app-rail {
+  flex: 0 0 208px;
+  width: 208px;
+  align-items: stretch;
+  padding: 28px 12px 12px;
+  background: var(--sidebar);
+}
+.rail-command { margin: 0 0 20px; border-radius: 8px; background: transparent; }
+.primary-navigation { display: flex; flex-direction: column; gap: 4px; }
+.primary-navigation button {
+  display: flex; align-items: center; gap: 8px; min-height: 36px; padding: 8px;
+  border-radius: 8px; text-align: left; font-size: 13px; color: var(--muted);
+}
+.primary-navigation button span { flex: 1; }
+.primary-navigation button:hover, .primary-navigation button.active { background: var(--hover); color: var(--text); }
+.primary-navigation .nav-inbox { color: var(--text); margin-bottom: 8px; }
+.primary-navigation small { font-size: 12px; }
+.app-rail .app-switcher { margin-top: auto; flex-direction: row; justify-content: flex-start; background: transparent; border-radius: 8px; padding: 8px 0; }
+.app-rail .app-switcher .icon-button { width: 36px; height: 32px; border-radius: 8px; }
+.rail-settings { display: flex; gap: 4px; }
+.mail-header .folder-switch, .mail-header .inbox-scope-selector, .mail-header .split-tabs { display: none; }
+.mail-header { justify-content: flex-end; }
+.folder-panel { left: 208px; }
+.mail-workspace { min-width: 0; }
+.thread-message.is-expanded, .thread-message.is-collapsed { border: 1px solid var(--border); border-radius: 12px; box-shadow: none; }
+.thread-message.is-collapsed { background: var(--panel); }
+.thread-message.is-expanded.is-final::before { display: none; }
+.reply-layout-toggle { display: block; margin: 0 0 12px; color: var(--muted); font: 12px var(--font); }
+.reply-layout-toggle:hover { color: var(--text); }
+@media (max-width: 700px) {
+  .app-rail { flex-basis: 164px; width: 164px; padding-inline: 8px; }
+  .folder-panel { left: 164px; min-width: 240px; max-width: calc(100vw - 164px); }
+}
+/* Selection uses a quiet surface change, never a left accent stripe. */
+.mail-row.highlighted::before,
+.folder-item.active::before,
+.searching::before,
+.command-input::before,
+.mail-motion-bar-ink,
+.thread-message-column.has-inline-draft .thread-reply-area::after { display: none; }
+.toast, .message-body blockquote { border-left: 0; }
+.personal-folder-title { margin-right: auto; font-size: 14px; font-weight: 500; }
+.snippet-row.selected::before { display: none; }
+.primary-navigation button > .icon { flex: 0 0 auto; }
+.primary-navigation button > span:not(.icon) { flex: 1; }
+.message-view { --reader-gutter: 48px; }
+/* The primary account is fixed; keep only the three everyday destinations. */
+.rail-settings { margin-top: auto; }
+.folder-panel .folder-list { padding-top: 28px; }
+:root[data-theme="light"] .folder-panel,
+:root[data-theme="light"] .modal,
+:root[data-theme="light"] .message-menu,
+:root[data-theme="light"] .calendar-actions-menu { background: #fafafa; }
+:root[data-theme="light"] .modal-backdrop { background: rgba(41,41,41,.22); }
+.row-actions { gap: 0; }
+.icon-button[aria-pressed="true"] { color: var(--text); }
+.icon-button[aria-pressed="true"] .icon { fill: currentColor; }
+.calendar-day-column { touch-action: none; }
+.calendar-drag-preview { position: absolute; left: 1px; right: 2px; z-index: 5; pointer-events: none; background: rgba(90,110,140,.2); border: 1px solid #8995a5; border-radius: 4px; }
+:root[data-theme="light"] .aux-primary,
+:root[data-theme="light"] .aux-primary:hover { background: #292929; color: #fff; }
+.command-header > .icon { color: var(--icon); }
